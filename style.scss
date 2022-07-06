@@ -1,0 +1,209 @@
+:root {
+    --red-color:#f03e3e;
+    --green-color: #37b24d;
+    --yellow-color:#f59f00;
+    --color-main:#212529;
+    --bg-secondary: #343a40;
+    --bg-main: #f1f3f5;
+  }
+  *{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    font-family: 'Chewy', cursive;
+    color: var(--color-main);
+
+}
+
+body{
+      background-color: var(--bg-main);
+      margin-top: 2rem;
+      min-height: 100vh;
+      margin: 0 auto;
+      header{
+          max-width: 900px;
+          margin: 0 auto;
+      }
+      position: relative;
+}
+
+.container{
+    display: flex;
+    gap:5rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+.title{
+    text-align: center;
+    padding: 1rem 0 2rem 5rem;
+    font-size: 5rem;
+    text-transform: capitalize;
+    letter-spacing: 5px;
+}
+.tools{
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+    align-items: center;
+    input,button{
+        // font-size: 20px;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: 120ms ease-in;
+        letter-spacing: 1.1px;
+    }
+    input:not([type="color"]),button{
+        min-width: 180px;
+        min-height: 35px;
+        text-transform: capitalize;
+
+    }
+    input[type="color"]{   
+        width: 70px;
+        height: 35px;
+        border:none;
+    }
+    input:not([type="range"]):hover, button:hover{
+        transform: scale(1.06);
+    }
+    input:not([type="color"]):active, button:active{
+        transform: scale(.97);
+        background-color: var(--color-main);
+        color: var(--bg-main);
+    }
+}
+.color-picker{
+    display:flex;
+    justify-content: space-between;
+    min-width: 170px;
+    .color-fill,.color-paint{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+    i{
+        font-size: 1.5rem;
+        color: var(--volor-main);
+    }
+}
+.container-grid{
+    width:550px !important;
+    height: 600px !important; 
+  }
+.grid{
+    display: grid;
+    // user-select: none;
+    background-color: #fff;
+    width: 450px;
+    height: 450px;
+    transition: .2s ease-in;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.24);
+    .grid-element.on{
+        border-top: 1px solid var(--bg-main);
+        border-left: 1px solid var(--bg-main);
+        transition: 50ms ease-in-out;
+    }
+    .grid-element:hover{
+        background-color: var(--bg-secondary);
+        user-select: none;
+    }
+}
+.active,.settings{
+    background-color: var(--color-main);
+    color: var(--bg-main);
+    border: none;
+}
+#grid-lines.settings:after{
+    content: " On";
+}
+#grid-lines:after{
+    content: " Off";
+}
+.active{
+    transform:scale(1.06);
+}
+.slider{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    accent-color: var(--bg-secondary);
+}
+footer{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+       text-align: center;
+       padding: .35rem;
+}
+@media (max-width:1000px){
+    .container{
+        gap:2.5rem;
+        max-width: 700px;
+        justify-content: center;
+    }
+    .title{
+        padding: 1rem 0 2rem 3rem;
+        font-size: 3.5rem;
+        letter-spacing: 2.5px;
+    }
+    .tools{
+
+        input:not([type="color"]),button{
+            min-width: 150px;
+            max-height: 35px;
+            text-transform: capitalize;
+    
+        }
+        input[type="color"]{   
+            width: 60px;
+        }
+    }
+    .color-picker{
+        min-width: 150px;
+        i{
+            font-size: 1.3rem;
+            color: var(--volor-main);
+        }
+    }
+}
+@media (max-width: 600px){
+    .container{
+        max-width: 380px;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column-reverse;
+    }
+    .container-grid{
+        width: unset !important;
+        height: unset!important;
+    }
+    .title{
+        font-size: 2.5rem;
+        letter-spacing: 2.5px;
+        padding: 1rem 0;
+    }
+    .grid{
+        width: 340px;
+        height: 340px;
+    }
+    .tools{
+        flex-flow: row wrap;
+        justify-content: center;
+        align-items: flex-end;
+        margin-bottom: 2.5rem;
+        input:not([type="color"]),button{
+            min-width: 150px;
+            max-height: 35px;
+            text-transform: capitalize;
+        }
+        input[type="color"]{   
+            width: 60px;
+        }
+    }
+    #width-slider,#width-slider-value{
+        display: none;
+    }
+}

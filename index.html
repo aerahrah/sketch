@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Chewy&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <title>Sketch-Me</title>
+</head>
+<body>
+    <header>
+        <h1 class="title">sketchy Me</h1>
+    </header>
+    <main class="container">
+        <div class="tools">
+            <div class="color-picker">
+                <div class="color-paint">  
+                    <i class="fa-solid fa-fill-drip"></i>   
+                    <input type="color" id="color-canvas"/>
+                </div>
+                <div class="color-fill">  
+                    <i class="fa-solid fa-paintbrush"></i>
+                    <input type="color" id="color-picker"/>  
+                </div>
+            </div>
+            <button class ="choice active" id="color-mode">Color mode</button>
+            <button class ="choice"  id="rainbow-mode">Rainbow mode</button>
+            <button class ="choice"  id="erase-mode">erase</button>
+            <button id="reset">reset</button>
+            <!-- <button id="dark-mode">Dark mode: on</button> -->
+            <button id="grid-lines">Grid line:</button>
+            <div class="slider">
+                <label for="slider" id ="slider-value">32 x 32</label>
+                <input type="range" id="slider" min="1" max="64"  value="32"/>
+            </div>
+            <div class="slider">
+                <label for="width-slider" id ="width-slider-value">450px by 450px</label>
+                <input type="range" id="width-slider" min="400" max="550" step="50" value="450"/>
+            </div>
+        </div>
+        <div class="container-grid">
+                <div class="grid"></div>
+        </div>
+    </main>
+    <footer>
+        <p>Copyright &#169 <strong>Ivan </strong> 2022</p>
+   </footer>
+</body>
+</html>
