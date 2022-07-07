@@ -1,9 +1,11 @@
+//default constant variables
 const defaultColor = "#272727";
 const defaultSize = 32;
 const defaultwidth = 450;
 const defaultMode = "paint";
 const defaultCanvas = "#ffffff";
 
+//default variables
 let color = defaultColor;
 let size = defaultSize;
 let width = defaultwidth;
@@ -24,9 +26,31 @@ const width_range = document.getElementById("width-slider-value");
 const grid_lines = document.getElementById("grid-lines");
 const choice = document.querySelectorAll(".choice");
 
+let mouseDown = false;
+document.body.onmousedown = () => (mouseDown = true);
+document.body.onmouseup = () => (mouseDown = false);
 
-colorPicker.value = defaultColor;
-colorCanvas.value = defaultCanvas;
+let modechanger = (mode) =>{currentMode = mode;};
+let numberRandom = () =>{ return random= Math.trunc(Math.random() * 256); };
+
+let reload = () =>{
+  grid_lines.classList.remove("settings");
+  grid.innerHTML = "";
+  gridSetup(size);
+};
+
+let removeClassList =()=>{
+  choice.forEach(choice=>{
+    choice.classList.remove("active");
+  });
+};
+
+choice.forEach(choice =>{
+  choice.addEventListener("click",()=>{
+    removeClassList();
+    choice.classList.add("active");
+  })
+});
 
 grid_lines.addEventListener("click",()=>{
   let gridElements = document.querySelectorAll('.grid-element');
@@ -36,46 +60,16 @@ grid_lines.addEventListener("click",()=>{
   });
 });
 
-choice.forEach(choice =>{
-  choice.addEventListener("click",()=>{
-    removeClassList();
-    choice.classList.add("active");
-  })
-});
-let removeClassList =()=>{
-  choice.forEach(choice=>{
-    choice.classList.remove("active");
-  });
-};
-
-let mouseDown = false;
-document.body.onmousedown = () => (mouseDown = true);
-document.body.onmouseup = () => (mouseDown = false);
-
-
-let reload = () =>{
-  grid_lines.classList.remove("settings");
-  grid.innerHTML = "";
-  gridSetup(size);
-};
-
-let modechanger = (mode) =>{
-  currentMode = mode;
-};
-let numberRandom = () =>{ return random= Math.trunc(Math.random() * 256); };
-
 reset.addEventListener("click", () => reload());
 rainbowMode.addEventListener("click", () => modechanger("rainbow"));
 colorMode.addEventListener("click",() => modechanger("paint"));
 eraserMode.addEventListener("click",() => modechanger("eraser"));
 
 width_slider.addEventListener("input",()=>{
-  grid_lines.classList.remove("settings");
   width = width_slider.value;
   width_range.textContent = `${width}px by ${width}px `;
   grid.style.width = `${width}px`;
   grid.style.height = `${width}px`;
-  reload();
 });
 
 slider.addEventListener("input",()=>{
@@ -97,7 +91,7 @@ paint = (e) =>{
   if(currentMode == "paint"){
     console.log("paint");
     e.target.style.backgroundColor = color;
-  } else if(currentMode == "rainbow"){
+  }else if(currentMode == "rainbow"){
     console.log("rainbow");
     e.target.style.backgroundColor = `rgb(${numberRandom()},${numberRandom()},${numberRandom()})`;
   }else if(currentMode = "eraser"){
@@ -110,14 +104,15 @@ gridSetup = (size) =>{
     grid.style.gridTemplateRows = `repeat(${size}, 1fr)`
   
     for (let i = 0; i < size * size; i++) {
-      let gridElement = document.createElement('div')
-      gridElement.classList.add('grid-element')
-      gridElement.addEventListener('mouseover', paint)
-      gridElement.addEventListener('mousedown', paint)
-      grid.appendChild(gridElement)
+      let gridElement = document.createElement('div');
+      gridElement.classList.add('grid-element');
+      gridElement.addEventListener('mouseover', paint);
+      gridElement.addEventListener('mousedown', paint);
+      grid.appendChild(gridElement);
     }
 }
 window.onload = () => {
-
+  colorPicker.value = defaultColor;
+  colorCanvas.value = defaultCanvas;
   gridSetup(size);
 }
